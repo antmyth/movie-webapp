@@ -1,0 +1,35 @@
+@(movies: List[Movie])
+
+@mainjquery("Movies") {
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#movies_table').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": true
+        });
+    } );
+</script>
+<h1>Movie collection</h1>
+<table id="movies_table" class="display">
+    <thead>
+    <tr>
+        <th class="ui-state-default">Title</th>
+        <th class="ui-state-default">Location</th>
+        <th class="ui-state-default">action</th>
+    </tr>
+    </thead>
+    @movies.map {movie =>
+    <tr>
+        <td>@movie.id</td>
+        <td>@movie.location</td>
+        <td>
+            <input type="button" value="Delete">
+        </td>
+    </tr>
+    }
+</table>
+}
