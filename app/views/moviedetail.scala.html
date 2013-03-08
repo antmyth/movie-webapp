@@ -1,0 +1,35 @@
+@(movieDetailForm: Form[models.Movie])
+
+@import views.html.helper._
+@import play.api.i18n._
+
+@input(field: Field, label: String, fieldType: Symbol = 'text) = {
+  <div class="control-group @if(field.hasErrors) {error}">
+    <label class="control-label" for="@field.id">@label</label>
+    <div class="controls">
+      <input type="@fieldType.name" value="@field.value" name="@field.id" disabled="true" />
+      @if(field.hasErrors){
+        <span class="help-inline">
+          @Messages(field.error.head.message)
+        </span>
+      }
+    </div>
+  </div>
+}
+
+@main("Details for"){
+  @form(action = routes.MovieListing.index, 'class -> "form-horizontal") {
+    <fieldset>
+        <legend>Movie Details</legend>
+        @movieDetailForm.globalError.map { error =>
+          <div class='row'>
+            <div class="alert alert-error">@error.message</div>
+          </div>
+        }
+      @input(movieDetailForm("name"), "Title")
+      @input(movieDetailForm("location"), "Location")
+    </fieldset>
+    <a href="@routes.MovieListing.index" class="btn">Back</a>
+    <input type="submit" class="btn" value="Request Details"/>
+  }
+}

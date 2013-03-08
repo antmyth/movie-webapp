@@ -9,6 +9,8 @@ POST    /register                   controllers.Register.register
 
 # Movies App
 GET     /movies-db                  controllers.MovieListing.index
+POST    /movies-detail              controllers.MovieListing.detail(title: String)
+GET     /movie/update               controllers.MovieListing.updateFromWeb(title: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

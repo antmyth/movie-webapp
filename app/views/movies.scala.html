@@ -1,5 +1,7 @@
 @(movies: List[Movie])
 
+@import helper._
+
 @mainjquery("Movies") {
 <script type="text/javascript">
     $(document).ready(function() {
@@ -14,9 +16,29 @@
             "iDisplayLength": 25,
             "aLengthMenu": [[25, 50, 100, -1],[25,50, 100, "All"]]
         });
-    } );
+        $("#xxx").click(function(){
+            $.ajax({
+              url: "/movie/update",
+              data: {
+                title: 97201
+              },
+              success: function( data ) {
+                $( "#dialog" ).html( "<strong>" + data + "</strong> degrees" );
+                $( "#dialog" ).dialog( "open" );
+              }
+            });
+        });
+    $( "#dialog" ).dialog({
+         autoOpen: false,
+         modal: true,
+         close: function(ev, ui) { alert('closing'); },
+     });
+
+    });
 </script>
+
 <h1>Movie collection</h1>
+<button id="xxx">xxx</button>
 <table id="movies_table" class="display">
     <thead>
     <tr>
@@ -27,12 +49,16 @@
     </thead>
     @movies.map {movie =>
     <tr>
-        <td>@movie.id</td>
+        <td>@movie.name</td>
         <td>@movie.location</td>
         <td>
-            <input type="button" value="Delete">
+            @form(routes.MovieListing.detail(movie.id)){
+            <input type="submit" value="detail">
+            }
         </td>
     </tr>
     }
 </table>
+<div id="dialog" title="Basic dialog">XXXXXXXXXXXXXXXX</div>
+
 }

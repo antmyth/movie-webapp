@@ -18,10 +18,18 @@ class IntegrationSpec extends Specification {
 
         browser.goTo("http://localhost:3333/")
 
-        browser.pageSource must contain("Your new application is ready.")
+        browser.pageSource must contain("Super Simple Sample")
        
       }
     }
+
+//    "display detail page" in {
+//      running(TestServer(3333),HTMLUNIT) { browser =>
+//        browser.goTo("http://localhost:3333/movies-detail?title=123")
+//
+//        browser.pageSource() must contain("123")
+//      }
+//    }
     
   }
   

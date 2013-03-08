@@ -7,6 +7,10 @@ import util.matching.Regex
 case class SearchResultItem(url: String, title: String, studio: String, year: String)
 
 object WebPageLoader {
+  def fromWeb(title: String): String = {
+    "1984"
+  }
+
   val iafdUrl = "http://www.iafd.com/"
   val searchByTitleUrl = iafdUrl+"results.asp?searchtype=title&searchstring="
 
