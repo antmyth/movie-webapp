@@ -29,5 +29,15 @@ class ApplicationSpec extends Specification {
         contentAsString(home) must contain ("Super Simple Sample")
       }
     }
+
+    "some crap" in {
+      val result = controllers.MovieListing.searchByTitle("Anal Freaks")(FakeRequest())
+
+      status(result) must be equalTo(OK)
+      contentType(result) must beSome.which(_ == "text/html")
+      contentAsString(result) must contain ("x1")
+
+      println(contentAsString(result))
+    }
   }
 }

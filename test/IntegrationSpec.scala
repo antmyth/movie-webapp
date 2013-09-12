@@ -10,27 +10,26 @@ import play.api.test.Helpers._
  * An integration test will fire up a whole play application in a real (or headless) browser
  */
 class IntegrationSpec extends Specification {
-  
+
   "Application" should {
-    
+
     "work from within a browser" in {
       running(TestServer(3333), HTMLUNIT) { browser =>
 
-        browser.goTo("http://localhost:3333/")
+          browser.goTo("http://localhost:3333/")
 
-        browser.pageSource must contain("Super Simple Sample")
-       
+          browser.pageSource must contain("Super Simple Sample")
+
       }
     }
+    //    "display detail page" in {
+    //      running(TestServer(3333),HTMLUNIT) { browser =>
+    //        browser.goTo("http://localhost:3333/movies-detail?title=123")
+    //
+    //        browser.pageSource() must contain("123")
+    //      }
+    //    }
 
-//    "display detail page" in {
-//      running(TestServer(3333),HTMLUNIT) { browser =>
-//        browser.goTo("http://localhost:3333/movies-detail?title=123")
-//
-//        browser.pageSource() must contain("123")
-//      }
-//    }
-    
   }
-  
+
 }

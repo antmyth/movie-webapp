@@ -1,3 +1,19 @@
-@(year: String)
-
-        @year
+@(movies: List[utils.SearchResultItem])
+<table id="found_movies" class="display">
+    <thead>
+    <tr>
+        <th class="ui-state-default">Title</th>
+        <th class="ui-state-default">Year</th>
+        <th class="ui-state-default">action</th>
+    </tr>
+    </thead>
+    @movies.map {movie =>
+    <tr>
+        <td>@movie.title</td>
+        <td>@movie.year</td>
+        <td>
+            <input type="submit" value="detail">
+        </td>
+    </tr>
+    }
+</table>

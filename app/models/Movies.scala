@@ -1,6 +1,5 @@
 package models
 
-
 import mongoContext.context
 
 import com.mongodb.casbah.Imports._

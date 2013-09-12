@@ -4,7 +4,7 @@ import play.api.mvc.{Action, Controller}
 import play.api.data.Forms._
 import play.api.data._
 import models.{Movie, Movies}
-import utils.WebPageLoader
+import utils.{IafdLoader, LoadInfoFromWeb}
 
 object MovieListing extends Controller{
 
@@ -23,8 +23,8 @@ object MovieListing extends Controller{
     Ok(views.html.moviedetail(movieDetailForm.fill( Movies.detail(title))))
   }
 
-  def updateFromWeb(title: String) = Action {
-    Ok(views.html.movieupdate(WebPageLoader.fromWeb(title)))
+  def searchByTitle(title: String) = Action {
+    Ok(views.html.movieupdate(LoadInfoFromWeb.fromWeb(title)(new IafdLoader())))
   }
 
 }
